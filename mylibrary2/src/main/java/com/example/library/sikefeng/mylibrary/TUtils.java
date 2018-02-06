@@ -6,7 +6,7 @@ package com.example.library.sikefeng.mylibrary;
 
 public class TUtils {
 
-    public String getTString(){
+    public static String getTString(){
         return "KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK";
     }
 
