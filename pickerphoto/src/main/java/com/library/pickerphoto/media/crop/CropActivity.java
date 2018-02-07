@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.library.pickerphoto.R;
+import com.library.pickerphoto.R2;
 import com.library.pickerphoto.base.activities.BaseActivity;
 import com.library.pickerphoto.media.config.SelectOptions;
 
@@ -54,36 +55,35 @@ public class CropActivity extends BaseActivity implements View.OnClickListener {
         mCropLayout.start();
     }
 
-    @OnClick({R.id.tv_crop, R.id.tv_cancel})
+    @OnClick({R2.id.tv_crop, R2.id.tv_cancel})
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.tv_crop:
-                Bitmap bitmap = null;
-                FileOutputStream os = null;
-                try {
-                    bitmap = mCropLayout.cropBitmap();
-                    String path = getFilesDir() + "/crop.jpg";
-                    os = new FileOutputStream(path);
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
-                    os.flush();
-                    os.close();
+        int i = view.getId();
+        if (i == R.id.tv_crop) {
+            Bitmap bitmap = null;
+            FileOutputStream os = null;
+            try {
+                bitmap = mCropLayout.cropBitmap();
+                String path = getFilesDir() + "/crop.jpg";
+                os = new FileOutputStream(path);
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+                os.flush();
+                os.close();
 
-                    Intent intent = new Intent();
-                    intent.putExtra("crop_path", path);
-                    setResult(RESULT_OK, intent);
-                    finish();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } finally {
-                    if (bitmap != null) bitmap.recycle();
-                    StreamUtil.close(os);
-                }
-                break;
-            case R.id.tv_cancel:
+                Intent intent = new Intent();
+                intent.putExtra("crop_path", path);
+                setResult(RESULT_OK, intent);
                 finish();
-                break;
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (bitmap != null) bitmap.recycle();
+                StreamUtil.close(os);
+            }
+        } else if (i == R.id.tv_cancel) {
+            finish();
         }
+
     }
 
     @Override

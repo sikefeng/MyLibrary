@@ -4,9 +4,9 @@ import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-
 import com.bumptech.glide.RequestManager;
 import com.library.pickerphoto.R;
+import com.library.pickerphoto.R2;
 import com.library.pickerphoto.base.adapter.BaseGeneralRecyclerAdapter;
 import com.library.pickerphoto.base.adapter.BaseRecyclerAdapter;
 import com.library.pickerphoto.bean.PageBean;
@@ -20,6 +20,7 @@ import java.lang.reflect.Type;
 import java.util.Date;
 
 import butterknife.BindView;
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by huanghaibin_dev
@@ -30,10 +31,10 @@ public abstract class BaseRecyclerViewActivity<T> extends BaseBackActivity imple
         RecyclerRefreshLayout.SuperRefreshLayoutListener,
         BaseGeneralRecyclerAdapter.Callback {
 
-    @BindView(R.id.refreshLayout)
+    @BindView(R2.id.refreshLayout)
     protected RecyclerRefreshLayout mRefreshLayout;
 
-    @BindView(R.id.recyclerView)
+    @BindView(R2.id.recyclerView)
     protected RecyclerView mRecyclerView;
 
     protected BaseRecyclerAdapter<T> mAdapter;
